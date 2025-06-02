@@ -14,6 +14,9 @@ Este proyecto consiste en una aplicación web desarrollada con Next.js y Firebas
 - Repositorio en GitHub (enlace público):  
   https://github.com/mariacustodio/segundoproyectodps
 
+  [Descargar el PDF del Segundo Proyecto DPS](docs/Segundo_proyecto_DPS.pdf)
+
+
 ## Tipo de Licencia
 
 Este proyecto se encuentra licenciado bajo una Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0).  

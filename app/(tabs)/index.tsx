@@ -1,75 +1,131 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from 'react';
+import { Animated, FlatList, StyleSheet, Text, View } from 'react-native';
+import { useEvents } from '../hooks/useEvents';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+export default function EventsScreen() {
+  const { events, loading } = useEvents();
 
-export default function HomeScreen() {
+  if (loading) {
+    return (
+      <View style={styles.center}>
+        <Text style={styles.loadingText}>Cargando eventos...</Text>
+      </View>
+    );
+  }
+
+  if (events.length === 0) {
+    return (
+      <View style={styles.center}>
+        <Text style={styles.noEventsText}>No hay eventos disponibles.</Text>
+      </View>
+    );
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <Text style={styles.title}>Eventos Comunitarios</Text>
+      <FlatList
+        data={events}
+        keyExtractor={item => item.id}
+        contentContainerStyle={{ paddingBottom: 30 }}
+        renderItem={({ item, index }) => <EventCard event={item} index={index} />}
+      />
+    </View>
   );
 }
 
+const EventCard = ({ event, index }: { event: any; index: number }) => {
+  const fadeAnim = React.useRef(new Animated.Value(0)).current;
+
+  React.useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 600,
+      delay: index * 200,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+  return (
+    <Animated.View style={[styles.card, { opacity: fadeAnim, transform: [{ translateY: fadeAnim.interpolate({
+      inputRange: [0, 1],
+      outputRange: [20, 0],
+    }) }] }]}>
+      <View style={styles.colorStrip} />
+      <View style={styles.cardContent}>
+        <Text style={styles.eventName}>{event.nombre}</Text>
+        <Text style={styles.eventDescription}>{event.descripcion}</Text>
+        <Text style={styles.eventDate}>{event.fecha}</Text>
+      </View>
+    </Animated.View>
+  );
+};
+
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    backgroundColor: '#121212',
+    flex: 1,
+    paddingTop: 50,
+    paddingHorizontal: 20,
+  },
+  center: {
+    flex:1,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    backgroundColor: '#121212',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#00E676',
+    marginBottom: 30,
+    textAlign: 'center',
+    letterSpacing: 1.2,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  loadingText: {
+    color: '#BBDEFB',
+    fontSize: 18,
   },
-});
+  noEventsText: {
+    color: '#616161',
+    fontSize: 18,
+  },
+  card: {
+    flexDirection: 'row',
+    backgroundColor: '#1E1E1E',
+    borderRadius: 16,
+    marginBottom: 20,
+    elevation: 6,
+    shadowColor: '#00E676',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+  },
+  colorStrip: {
+    width: 6,
+    borderTopLeftRadius: 16,
+    borderBottomLeftRadius: 16,
+    backgroundColor: '#00E676',
+  },
+  cardContent: {
+    flex: 1,
+    padding: 16,
+  },
+  eventName: {
+    color: '#E0F2F1',
+    fontSize: 22,
+    fontWeight: '700',
+  },
+  eventDescription: {
+    color: '#B2DFDB',
+    fontSize: 16,
+    marginTop: 8,
+    lineHeight: 22,
+  },
+  eventDate: {
+    color: '#80CBC4',
+    fontSize: 14,
+    marginTop: 12,
+    fontStyle: 'italic',
+  },
+});    

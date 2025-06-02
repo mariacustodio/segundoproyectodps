@@ -1,50 +1,78 @@
-# Welcome to your Expo app 👋
+# Segundo Proyecto - Desarrollo de Proyectos de Software
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este proyecto consiste en una aplicación web desarrollada con Next.js y Firebase. El sistema permite gestionar eventos, con funcionalidades como registro de usuarios, inicio de sesión y operaciones CRUD sobre eventos.
 
-## Get started
+## Integrantes del Grupo
 
-1. Install dependencies
+- María Custodio - Grupo Teórico 02  
 
+## Enlaces Relevantes
+
+- Notion (organización del proyecto):  
+  https://www.notion.so/2060ba2429078057ab17d0a9e7906b8d
+
+- Repositorio en GitHub (enlace público):  
+  https://github.com/mariacustodio/segundoproyectodps
+
+## Tipo de Licencia
+
+Este proyecto se encuentra licenciado bajo una Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0).  
+Más información en: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+## Documentación del Proyecto
+
+### Descripción General
+
+Este sistema fue desarrollado como parte del segundo proyecto de la materia de Desarrollo de Proyectos de Software. El objetivo es aplicar conocimientos de desarrollo web utilizando herramientas modernas como Next.js y Firebase, con el propósito de crear un sistema funcional y organizado.
+
+### Funcionalidades
+
+- Registro e inicio de sesión utilizando Firebase Authentication.
+- Creación de eventos.
+- Visualización de eventos disponibles.
+- Edición y eliminación de eventos.
+- Protección de rutas para usuarios autenticados.
+
+### Tecnologías Utilizadas
+
+- Next.js 14 (con App Router)
+- Firebase (Authentication y Firestore)
+- CSS Modules o Tailwind CSS (según configuración del equipo)
+- Git y GitHub
+
+## Guía de Instalación
+
+1. Clonar el repositorio:
    ```bash
-   npm install
-   ```
+   git clone https://github.com/mariacustodio/segundoproyectodps.git
+Instalar las dependencias:
 
-2. Start the app
+npm install
+Configurar el archivo .env.local con los siguientes valores proporcionados por Firebase:
 
-   ```bash
-   npx expo start
-   ```
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+Ejecutar el entorno de desarrollo:
 
-In the output, you'll find options to open the app in a
+npm run dev
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Guía de Usuario
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Al ingresar a la aplicación, el usuario puede registrarse con su correo electrónico y contraseña.
 
-## Get a fresh project
+Luego de iniciar sesión, podrá acceder a la pantalla principal donde se listan los eventos.
 
-When you're ready, run:
+El usuario puede crear nuevos eventos desde el formulario correspondiente.
 
-```bash
-npm run reset-project
-```
+También podrá editar o eliminar eventos existentes si tiene los permisos adecuados.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Al cerrar sesión, el acceso a las rutas protegidas será restringido.
 
-## Learn more
+## Observaciones finales
+Este proyecto será presentado como parte del segundo proyecto del ciclo. 
+La documentación técnica, guía de usuario y enlaces relevantes están disponibles en este repositorio y en la plataforma solicitada por el docente. 
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

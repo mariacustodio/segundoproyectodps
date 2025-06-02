@@ -4,7 +4,7 @@ Este proyecto consiste en una aplicación web desarrollada con Next.js y Firebas
 
 ## Integrantes del Grupo
 
-- María Custodio - Grupo Teórico 02  
+- María Custodio 
 
 ## Enlaces Relevantes
 
